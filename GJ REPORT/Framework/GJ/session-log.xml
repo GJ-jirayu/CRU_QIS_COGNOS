@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bmtactionlog project="C:\Users\GJCognos\Desktop\GJ REPORT\Framework\GJ\GJ.cpf" templatedir="../templates/bmt/Cr1Model" timestamp="20160129120408901" user="GJCognos" version="10.2.6100.82"><transaction event="StartSession" saved="true" seq="1" timestamp="20160129120408902" uniqueId="5E8D54F25E8D54F2" user="GJCognos"/><transaction saved="true" seq="2" timestamp="20160129120441645" uniqueId="412E0B62412E0B62"><action seq="1" type="SetActiveLocale"><inputparams><param seq="1" type="i18nstring"><value>en</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="3" timestamp="20160129120451100" uniqueId="1ADC8C711ADC8C71"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select kr.month_id
+,kpi.calendar_type_id
+,kr.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,kr.kpi_structure_id
+,kr.kpi_structure_name
+,kr.kpi_id
+,kr.kpi_name
+,org.path
+,kr.org_id
+,kr.org_name
+,org.university_code
+,org.university_name
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_code ELSE org.faculty_code END as faculty_code
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_name ELSE org.faculty_name END as faculty_name
+,org.course_code
+,org.course_name
+,kr.kpi_level_id
+,kr.kpi_level_name
+,kr.kpi_group_id
+,kr.kpi_group_name
+,kr.kpi_group_short_name
+,kr.formula_desc
+,kr.period_name	
+,kr.kpi_uom_name
+,kr.benchmark_value
+,kr.target_value
+,kr.actual_value
+,kr.percent_actual_vs_target
+,kr.percent_actual_change
+,kr.score as kpi_score
+,kpi.min_score
+from kpi_result kr, sys_month sm, org , kpi
+where kr.month_id = sm.month_id
+and org.org_id = kr.org_id
+and kpi.kpi_id = kr.kpi_id
+order by kr.academic_year
+,sm.academic_month_no
+,kr.kpi_group_id
+,kr.kpi_level_id
+,kr.org_id
+,kr.kpi_structure_id
+,kr.kpi_id</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="5" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="4" timestamp="20160129120638432" uniqueId="CFC0A57ECFC0A57E"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>securityView</mappingpath><value>[].[securityViews].[For_Dashboard]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="5" timestamp="20160129120638498" uniqueId="4FBFF8B44FBFF8B4"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>package</mappingpath><value>[].[packages].[For_Dashboard]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="6" timestamp="20160129120650156" uniqueId="90D8250A90D8250A"/><transaction saved="true" seq="7" timestamp="20160129120650747" uniqueId="DA6D1136DA6D1136"><action seq="1" type="Undo"><inputparams/><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="8" timestamp="20160129132333184" uniqueId="AC166C1EAC166C1E" user="GJCognos"/></bmtactionlog>

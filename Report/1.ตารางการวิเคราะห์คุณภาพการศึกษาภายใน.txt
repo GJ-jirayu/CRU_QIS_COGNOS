@@ -1,0 +1,257 @@
+<report xmlns="http://developer.cognos.com/schemas/report/12.0/" useStyleVersion="10" expressionLocale="en-us">
+				<modelPath>/content/package[@name='For Report']/model[@name='model']</modelPath>
+				<drillBehavior modelBasedDrillThru="true"/>
+				<queries>
+					
+				<query name="table"><source><model/></source><selection><dataItem name="KPI Structure" aggregate="none" rollupAggregate="none"><expression>[Model].[Report1].[kpi_structure_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="identifier" output="no"/></XMLAttributes></dataItem><dataItem name="count_kpi" label="จำนวนตัวบ่งชี้" aggregate="average" rollupAggregate="total"><expression>[Model].[Report1].[count_kpi]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_type_short_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Report1].[kpi_type_short_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="avg_score_kpi" aggregate="average"><expression>if ([Model].[Report1].[avg_score_kpi] = 0) then (null) else ([Model].[Report1].[avg_score_kpi])</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="avg_score_kpi_structure_id" aggregate="average" label="คะแนนเฉลี่ย"><expression>[Model].[Report1].[avg_score_kpi_structure_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="Sort"><expression>if ([Model].[Report1].[kpi_type_short_name]='I') then (1)
+else if ([Model].[Report1].[kpi_type_short_name]='P') then (2)
+else (3)</expression></dataItem><dataItem name="kpi_structure_id_threshold_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Report1].[kpi_structure_id_threshold_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItemEdgeSummary solveOrder="1" refDataItem="KPI Structure" aggregateMethod="aggregate" name="Summary(KPI Structure)" label="Summary"/><dataItem name="kpi_structure_id_threshold_name1" aggregate="none" rollupAggregate="none"><expression>[Model].[Report1].[kpi_structure_id_threshold_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="Data Item2"><expression>'ผลการประเมิน'</expression></dataItem><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Report1].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Report1].[academic_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Report1].[academic_month_no] = ?paramMonth?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Report1].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional" postAutoAggregation="false"><filterExpression>[Model].[Report1].[kpi_level_id] = ?paramLv?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Report1].[org_id] = ?paramOrg?</filterExpression></detailFilter></detailFilters></query><query name="threshold"><source><model/></source><selection><dataItem name="Threshold" rollupAggregate="none" aggregate="none"><expression>[Model].[Threshold].[Threshold]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_id"><expression>[Model].[Threshold].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional" postAutoAggregation="false"><filterExpression>[Model].[Threshold].[academic_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Threshold].[kpi_level_id] = ?paramLv?</filterExpression></detailFilter></detailFilters></query><query name="recommend_d"><source><model/></source><selection><dataItem name="recommend" aggregate="none" rollupAggregate="none"><expression>[Model].[Recommend].[recommend]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Recommend].[academic_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Recommend].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Recommend].[org_id] = ?paramOrg?</filterExpression></detailFilter><detailFilter><filterExpression>[Model].[Recommend].[recommend_flag]='1'</filterExpression></detailFilter></detailFilters></query><query name="recommend_u"><source><model/></source><selection><dataItem name="recommend" aggregate="none" rollupAggregate="none"><expression>[Model].[Recommend].[recommend]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Recommend].[academic_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Recommend].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Recommend].[org_id] = ?paramOrg?</filterExpression></detailFilter><detailFilter use="required" postAutoAggregation="false"><filterExpression>[Model].[Recommend].[recommend_flag]='2'</filterExpression></detailFilter></detailFilters></query><query name="str_on"><source><model/></source><selection><dataItem name="kpi_structure_mis"><expression>'รายงานผลการวิเคราะห์จุดเด่นและโอกาสในการพัฒนา องค์ประกอบที่' + [Model].[Structure_no].[kpi_structure_mis] + ' - องค์ประกอบที่' +[Model].[Structure_no].[kpi_structure_max]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Structure_no].[academic_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Structure_no].[academic_month_no] = ?paramMonth?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Structure_no].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Structure_no].[org_id] = ?paramOrg?</filterExpression></detailFilter><detailFilter use="prohibited"><filterExpression>[Model].[Structure_no].[strucuture_type_id]='2'</filterExpression></detailFilter></detailFilters></query><query name="qparamYear"><source><model/></source><selection><dataItem name="academic_year" aggregate="none"><expression>[Model].[Report1].[academic_year]</expression></dataItem></selection></query><query name="qparamMonth"><source><model/></source><selection><dataItem name="academic_month_no" aggregate="none"><expression>[Model].[Report1].[academic_month_no]</expression></dataItem><dataItem name="th_month_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Report1].[th_month_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem></selection></query><query name="qparamGroup"><source><model/></source><selection><dataItem name="kpi_group_id" aggregate="none"><expression>[Model].[Report1].[kpi_group_id]</expression></dataItem><dataItem name="kpi_group_short_name" aggregate="none" sort="ascending"><expression>[Model].[Report1].[kpi_group_short_name]</expression></dataItem></selection></query><query name="qparamLv"><source><model/></source><selection><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Report1].[kpi_level_id]</expression></dataItem><dataItem name="kpi_level_name" aggregate="none" sort="ascending"><expression>[Model].[Report1].[kpi_level_name]</expression></dataItem></selection></query><query name="qparamFac"><source><model/></source><selection><dataItem name="faculty_code" aggregate="none"><expression>[Model].[Report1].[faculty_code]</expression></dataItem><dataItem name="faculty_name" aggregate="none" sort="ascending"><expression>[Model].[Report1].[faculty_name]</expression></dataItem></selection></query><query name="qparamOrg"><source><model/></source><selection><dataItem name="org_id" aggregate="none"><expression>[Model].[Report1].[org_id]</expression></dataItem><dataItem name="org_name" aggregate="none" sort="ascending"><expression>[Model].[Report1].[org_name]</expression></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Report1].[kpi_level_id]=?paramLv?</filterExpression></detailFilter></detailFilters></query></queries>
+				<layouts>
+					<layout>
+						<reportPages>
+							<page name="Page1"><style><defaultStyles><defaultStyle refStyle="pg"/></defaultStyles></style>
+								<pageBody><style><defaultStyles><defaultStyle refStyle="pb"/></defaultStyles><CSS value="background-color:white;text-align:center"/></style>
+									<contents>
+										
+									<table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:100%;border:1pt solid navy"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><staticValue>ตารางการวิเคราะห์คุณภาพการศึกษาภายใน</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt;font-weight:bold;color:white;padding-left:10px"/></style></textItem></contents><style><CSS value="background-color:navy;padding-top:10px;padding-bottom:10px"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:99%;color:#F2F2F2;font-family:Tahoma;font-size:12pt;border:1pt solid silver"/></style><tableRows><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;color:white;font-family:Tahoma;font-size:12pt;font-weight:bold;margin-top:10px;margin-bottom:10px"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><staticValue>ปีการศึกษา</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt;font-weight:normal;color:black;padding-left:5px"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramYear" refQuery="qparamYear" multiSelect="false" selectValueUI="dropdown" required="false"><useItem refDataItem="academic_year"/><headerText><defaultText/></headerText><style><CSS value="width:80px;font-family:Tahoma;font-size:11pt"/><dataFormat><numberFormat useGrouping="false"/></dataFormat></style></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>เดือน</staticValue></dataSource><style><CSS value="margin-left:10px;font-family:Tahoma;font-size:11pt;font-weight:normal;color:black"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramMonth" refQuery="qparamMonth" multiSelect="false" selectValueUI="dropdown" required="false"><useItem refDataItem="academic_month_no"><displayItem refDataItem="th_month_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:80px;font-family:Tahoma;font-size:11pt"/></style></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>กลุ่มตัวบ่งชี้</staticValue></dataSource><style><CSS value="margin-left:10px;font-family:Tahoma;font-size:11pt;font-weight:normal;color:black"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramGroup" refQuery="qparamGroup" multiSelect="false" selectValueUI="dropdown" required="false"><useItem refDataItem="kpi_group_id"><displayItem refDataItem="kpi_group_short_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:80px;font-family:Tahoma;font-size:11pt"/></style></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>ระดับตัวบ่งชี้</staticValue></dataSource><style><CSS value="margin-left:10px;font-family:Tahoma;font-size:11pt;font-weight:normal;color:black"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramLv" refQuery="qparamLv" multiSelect="false" selectValueUI="dropdown" required="false" autoSubmit="true"><useItem refDataItem="kpi_level_id"><displayItem refDataItem="kpi_level_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:80px;font-family:Tahoma;font-size:11pt"/></style><sortList><sortItem refDataItem="kpi_level_id"/></sortList></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>คณะ</staticValue></dataSource><style><CSS value="margin-left:10px;font-family:Tahoma;font-size:11pt;font-weight:normal;color:black"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramFac" refQuery="qparamFac" multiSelect="false" selectValueUI="dropdown" required="false" autoSubmit="true" cascadeOn="paramLv"><useItem refDataItem="faculty_code"><displayItem refDataItem="faculty_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>หลักสูตร</staticValue></dataSource><style><CSS value="margin-left:10px;font-family:Tahoma;font-size:11pt;font-weight:normal;color:black"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramOrg" refQuery="qparamOrg" multiSelect="false" selectValueUI="dropdown" required="false" cascadeOn="paramFac"><useItem refDataItem="org_id"><displayItem refDataItem="org_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></selectValue></contents></tableCell></tableCells></tableRow></tableRows></table></contents><style><CSS value="background-color:#F2F2F2"/></style></tableCell><tableCell><contents><promptButton type="finish">
+			<contents><textItem><dataSource><staticValue>เรียกดูข้อมูล</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt;font-weight:normal"/></style></textItem></contents>
+			<style>
+				<defaultStyles>
+					<defaultStyle refStyle="bp"/>
+				</defaultStyles>
+			<CSS value="background-color:silver"/></style>
+		</promptButton></contents><style><CSS value="background-color:#F2F2F2;width:5%;text-align:center"/></style></tableCell></tableCells></tableRow></tableRows></table></contents><style><CSS value="text-align:center;padding-top:5px;padding-bottom:5px"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse"/></style><tableRows><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;text-align:center;font-family:Tahoma;font-size:12pt;background-color:#F0F0F0;width:100%;border-top:1pt solid silver;border-left:1pt solid silver;border-right:1pt solid silver"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><reportExpression>'ตารางการวิเคราะห์คุณภาพการศึกษา กลุ่มตัวบ่งชี้ '+ParamDisplayValue('paramGroup')+' ระดับตัวบ่งชี้ '+ParamDisplayValue('paramLv')</reportExpression></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt"/></style></textItem></contents><style><CSS value="padding-top:10px;text-align:center"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><textItem><dataSource><reportExpression>ParamDisplayValue('paramOrg') 
++' ปีการศึกษา '+ParamDisplayValue('paramYear') 
++' เดือน '+ParamDisplayValue('paramMonth') 
+ </reportExpression></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt"/></style></textItem></contents><style><CSS value="padding-bottom:10px;text-align:center"/></style></tableCell></tableCells></tableRow></tableRows></table></contents></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><crosstab horizontalPagination="true" name="Crosstab2" refQuery="table">
+			<crosstabCorner>
+				<contents><textItem><dataSource><staticValue>องค์ประกอบ</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents>
+				
+			<style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="vertical-align:middle;text-align:center;font-size:12pt;color:black"/></style></crosstabCorner>
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;font-size:12pt;font-family:Tahoma;color:black"/>
+				<defaultStyles>
+					<defaultStyle refStyle="xt"/>
+				</defaultStyles>
+			</style>
+		<crosstabRows><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="KPI Structure" edgeLocation="e1"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="border-right-style:none;background-color:white;font-size:11pt;color:black"/></style><contents><textItem><dataSource><memberCaption/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><style><CSS value="color:black;font-size:11pt"/></style></factCell></crosstabNodeMember></crosstabNodeMembers><crosstabNestedNodes><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="kpi_structure_id_threshold_name" edgeLocation="e6"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="padding-right:0px;padding-left:0px;border-left-style:none;background-color:white;font-size:11pt;color:black;border-top-style:none;border-right-style:none;border-bottom-style:none"/></style><contents><textItem><dataSource><staticValue/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></crosstabNodeMember></crosstabNodeMembers><crosstabNestedNodes><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="kpi_structure_id_threshold_name1" edgeLocation="e10"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="padding-right:0px;padding-left:0px;background-color:white;font-size:11pt;color:black;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/></style><contents><textItem><dataSource><staticValue/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabNestedNodes></crosstabNode></crosstabNestedNodes></crosstabNode><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="Summary(KPI Structure)" edgeLocation="e9"><style><defaultStyles><defaultStyle refStyle="ol"/></defaultStyles><CSS value="text-align:center;background-color:white;color:black;font-weight:normal;font-size:11pt;border:1pt solid silver"/></style><contents><textItem><dataSource><staticValue>รวม</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><style><defaultStyles><defaultStyle refStyle="ov"/></defaultStyles><CSS value="background-color:white;font-size:11pt;font-weight:normal;color:black"/></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="Summary(KPI Structure)" edgeLocation="e7"><style><CSS value="text-align:center;background-color:white;color:black;font-weight:normal;font-size:11pt;border:1pt solid silver"/><defaultStyles><defaultStyle refStyle="ol"/></defaultStyles></style><contents><textItem><dataSource><staticValue>ผลการประเมิน</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><contents><textItem><dataSource><reportExpression>case
+when ([table].[avg_score_kpi] between (0.00) and (2.00)) then ('น้อย')
+when ([table].[avg_score_kpi] between (2.01) and (3.00)) then ('ปานกลาง')
+when ([table].[avg_score_kpi] between (3.01) and (4.00)) then ('ดี')
+when ([table].[avg_score_kpi] between (4.01) and (5.00)) then ('ดีมาก') 
+else ('NA') end</reportExpression></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><defaultStyles><defaultStyle refStyle="ov"/></defaultStyles><CSS value="background-color:white;font-size:11pt;font-weight:normal;color:black"/></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabRows><crosstabFactCell><contents><textItem><dataSource><cellValue/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><defaultStyles><defaultStyle refStyle="mv"/></defaultStyles><CSS value="border:0.25pt solid silver"/></style></crosstabFactCell><crosstabColumns><crosstabNode><crosstabNestedNodes><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="count_kpi" edgeLocation="e2"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="text-align:center;vertical-align:middle;font-size:12pt;color:black"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="count_kpi"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><style><CSS value="text-align:center"/></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode><crosstabNode><crosstabNestedNodes><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="avg_score_kpi" edgeLocation="e4"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="padding-top:0px;padding-bottom:0px;font-size:12pt;text-align:center;vertical-align:middle;color:black;border-top:1pt none black"/></style><contents><textItem><dataSource><staticValue/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><style><dataFormat><numberFormat decimalSize="2"/></dataFormat></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabNestedNodes><crosstabNodeMembers><crosstabNodeMember refDataItem="kpi_type_short_name" edgeLocation="e3"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="vertical-align:middle;text-align:center;font-size:12pt;color:black;border-bottom:1pt none black"/></style><contents><textItem><dataSource><memberCaption/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><sortList><sortItem refDataItem="Sort"/></sortList></crosstabNodeMember></crosstabNodeMembers></crosstabNode><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="avg_score_kpi_structure_id" edgeLocation="e5"><style><defaultStyles><defaultStyle refStyle="ml"/></defaultStyles><CSS value="vertical-align:middle;text-align:center;font-size:12pt;color:black"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="avg_score_kpi_structure_id"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><factCell><style><dataFormat><numberFormat decimalSize="2"/></dataFormat><CSS value="text-align:center"/></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabNestedNodes><crosstabNodeMembers><crosstabSpacer edgeLocation="s1">
+			<contents>
+				<textItem>
+					<dataSource>
+						<staticValue> </staticValue>
+					</dataSource>
+				</textItem>
+			<textItem><dataSource><staticValue>คะแนนการประเมินเฉลี่ย</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents>
+			
+			<style>
+				<defaultStyles>
+					<defaultStyle refStyle="xs"/>
+				</defaultStyles>
+			<CSS value="text-align:center;vertical-align:middle;font-size:12pt;color:black;height:100px"/></style>
+		</crosstabSpacer></crosstabNodeMembers></crosstabNode><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="Data Item2" edgeLocation="e11"><style><defaultStyles><defaultStyle refStyle="cl"/></defaultStyles><CSS value="text-align:center;font-style:normal"/></style><contents><textItem><dataSource><staticValue>ผลการประเมิน</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem><layoutComponentRef refLayoutElement="Crosstab3"/></contents><factCell><style><defaultStyles><defaultStyle refStyle="cv"/></defaultStyles></style></factCell></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabColumns><crosstabIntersections><crosstabIntersection row="e7" column="e2"><contents/><style><CSS value="vertical-align:middle"/></style></crosstabIntersection><crosstabIntersection row="e7" column="e5"><contents/><style><CSS value="vertical-align:middle"/></style></crosstabIntersection><crosstabIntersection row="e7" column="e4"><style><CSS value="vertical-align:middle"/></style></crosstabIntersection><crosstabIntersection row="e9" column="e4"><style><CSS value="text-align:center"/></style></crosstabIntersection><crosstabIntersection row="e10" column="e11"><contents><textItem useDetailValue="true"><dataSource><dataItemValue refDataItem="kpi_structure_id_threshold_name1"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="text-align:center;font-style:normal"/></style></crosstabIntersection><crosstabIntersection row="e7" column="e11"><contents/></crosstabIntersection></crosstabIntersections></crosstab></contents></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:100%;margin-top:10px"/></style><tableRows><tableRow><tableCells><tableCell><contents><list horizontalPagination="true" name="List1" refQuery="str_on">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none;font-family:Tahoma;font-size:12pt;width:100%;text-align:left;background-color:#F0F0F0"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="display:none"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_structure_mis"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles><CSS value="text-align:left;background-color:white;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_structure_mis"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns></list></contents></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><list horizontalPagination="true" name="recommend_d" refQuery="recommend_d">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;width:100%;font-family:Tahoma;font-size:12pt"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="text-align:left"/></style><contents><textItem><dataSource><staticValue>จุดเด่น</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="recommend"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns></list></contents></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><list horizontalPagination="true" name="recommend_u" refQuery="recommend_u">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;width:100%;font-family:Tahoma;font-size:12pt"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="text-align:left"/></style><contents><textItem><dataSource><staticValue>โอกาสในการพัฒนา</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="recommend"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns></list></contents></tableCell></tableCells></tableRow></tableRows></table></contents></tableCell></tableCells></tableRow></tableRows><conditionalRender refVariable="Show"><renderFor refVariableValue="1"/></conditionalRender></table></contents><style><CSS value="text-align:center;padding-top:10px;padding-bottom:10px"/></style></tableCell></tableCells></tableRow></tableRows></table><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:100%"/></style><tableRows><tableRow><tableCells><tableCell><contents><crosstab horizontalPagination="true" name="Crosstab3" refQuery="threshold">
+			<crosstabCorner>
+				<contents/>
+				<style>
+					<defaultStyles>
+						<defaultStyle refStyle="xm"/>
+					</defaultStyles>
+				<CSS value="font-family:Tahoma;font-size:11pt"/></style>
+			</crosstabCorner>
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;font-family:Tahoma;font-size:11pt"/>
+				<defaultStyles>
+					<defaultStyle refStyle="xt"/>
+				</defaultStyles>
+			</style>
+		<crosstabRows><crosstabNode><crosstabNodeMembers><crosstabNodeMember refDataItem="Threshold" edgeLocation="e1"><style><CSS value="background-color:transparent;font-size:11pt;font-family:Tahoma;border:1pt none black"/></style><contents><textItem><dataSource><memberCaption/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></crosstabNodeMember></crosstabNodeMembers></crosstabNode></crosstabRows><crosstabColumnNodeStyle><style><CSS value="background-color:transparent;font-family:Tahoma;font-size:11pt;border:1pt none black"/></style></crosstabColumnNodeStyle></crosstab></contents><style><CSS value="display:none"/></style></tableCell></tableCells></tableRow></tableRows><conditionalRender refVariable="Show"><renderFor refVariableValue="1"/></conditionalRender></table></contents>
+								</pageBody>
+								
+								<pageFooter>
+									<contents>
+										<table>
+											<tableRows>
+												<tableRow>
+													<tableCells>
+														<tableCell>
+															<contents>
+																<date>
+																	<style>
+																		<dataFormat>
+																			<dateFormat/>
+																		</dataFormat>
+																	</style>
+																</date>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:left;width:25%"/>
+															</style>
+														</tableCell>
+														<tableCell>
+															<contents>
+																<pageNumber/>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:center;width:50%"/>
+															</style>
+														</tableCell>
+														<tableCell>
+															<contents>
+																<time>
+																	<style>
+																		<dataFormat>
+																			<timeFormat/>
+																		</dataFormat>
+																	</style>
+																</time>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:right;width:25%"/>
+															</style>
+														</tableCell>
+													</tableCells>
+												</tableRow>
+											</tableRows>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="tb"/>
+												</defaultStyles>
+												<CSS value="border-collapse:collapse;width:100%"/>
+											</style>
+										</table>
+									</contents>
+									<style>
+										<defaultStyles>
+											<defaultStyle refStyle="pf"/>
+										</defaultStyles>
+										<CSS value="padding-top:10px"/>
+									</style>
+								</pageFooter>
+							</page>
+						</reportPages>
+					</layout>
+				</layouts>
+			<XMLAttributes><XMLAttribute name="RS_CreateExtendedDataItems" value="true" output="no"/><XMLAttribute name="listSeparator" value="," output="no"/><XMLAttribute name="RS_modelModificationTime" value="2016-01-06T09:17:49.735Z" output="no"/></XMLAttributes><reportName>ตารางการวิเคราะห์คุณภาพการศึกษาภายใน</reportName><classStyles><classStyle name="pv"><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none;font-size:10pt"/></classStyle></classStyles><reportVariables><reportVariable type="boolean" name="Show">
+			<reportExpression>ParamDisplayValue('paramOrg') is not null</reportExpression>
+			<variableValues>
+				<variableValue value="1"/>
+			</variableValues>
+		</reportVariable></reportVariables></report>

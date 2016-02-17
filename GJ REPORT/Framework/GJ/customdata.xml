@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bmtcustomdata><namespace name="visuals"><object name="[]"><property name="BMTFW_Layout_Version">long:5</property><property name="BMTFW_Layout"><![CDATA[string:[Model].[Dashboard_1]
+	dx=144,208
+	expanded=t
+	parent=Model
+	x=366,-3
+[Model].[Threshold_1]
+	dx=133,82
+	expanded=t
+	parent=Model
+	x=396,16
+[Model].[Dashboard_2]
+	dx=155,208
+	expanded=t
+	parent=Model
+	x=426,46
+[Model].[Dashboard_2_Evidence]
+	dx=199,208
+	expanded=t
+	parent=Model
+	x=456,76
+[Model].[Recommend]
+	dx=134,208
+	expanded=t
+	parent=Model
+	x=486,106
+[Model].[Structure_no]
+	dx=136,208
+	expanded=t
+	parent=Model
+	x=516,136
+[Model].[Dashboard_2_Report]
+	dx=185,208
+	expanded=t
+	parent=Model
+	x=546,166
+[Model].[ParamOrgReport]
+	dx=159,136
+	expanded=t
+	parent=Model
+	x=576,196
+[Model]
+	c=d8a77d
+	dx=405,673
+	expanded=t
+	parent=che
+	view=0,0
+	x=434,35
+	zoom=1.000000
+[che]
+	view=0,0
+	zoom=1.000000
+[].[parameterMaps].[_env]
+	dx=100,28
+	expanded=t
+	parent=Parameter Maps
+	x=10,57
+[].[parameterMaps].[_governor]
+	dx=100,28
+	expanded=t
+	parent=Parameter Maps
+	x=150,57
+[].[parameterMaps]
+	view=0,0
+	zoom=1.000000
+[]
+	Notation=4
+	ShowGrid=1
+	Snap=1
+	font=Arial Narrow
+	lod=33
+	tc=323232
+	viewStyle=2
+[Model].[รายงาน1]
+	dx=128,172
+	expanded=t
+	parent=Model
+	x=178,292
+[Model].[Report1]
+	dx=195,154
+	expanded=t
+	parent=Model
+	x=200,57
+[Model].[Report2]
+	dx=128,208
+	expanded=t
+	parent=Model
+	x=10,292
+[Model].[Threshold]
+	dx=141,136
+	expanded=t
+	parent=Model
+	x=10,527
+[Model].[Data for Report]
+	dx=150,208
+	expanded=t
+	parent=Model
+	x=10,57
+[Model].[user_roles]
+	dx=172,64
+	expanded=t
+	parent=Model
+	x=366,-5
+]]></property></object></namespace></bmtcustomdata>

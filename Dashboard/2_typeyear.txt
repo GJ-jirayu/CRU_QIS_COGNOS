@@ -1,0 +1,471 @@
+<report xmlns="http://developer.cognos.com/schemas/report/12.0/" useStyleVersion="10" expressionLocale="en-us">
+				<modelPath>/content/package[@name='For_Dashboard']/model[@name='model']</modelPath>
+				<drillBehavior modelBasedDrillThru="true"/>
+				<queries>
+					<query name="kpi_stru">
+						<source>
+							<model/>
+						</source>
+						<selection><dataItem name="kpi_structure_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_structure_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_structure_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Dashboard_2].[kpi_structure_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_year" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_year]
+	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_year]
+ ELSE [Model].[Dashboard_2].[fiscal_year] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_month_no" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_month_no]	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_month_no]
+ ELSE [Model].[Dashboard_2].[fiscal_month_no] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem></selection>
+					<detailFilters><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[calendar_type_id] = ?paramTypeYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_month_no] = ?paramMonth?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_level_id] = ?paramLv?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[org_id] = ?paramOrg?</filterExpression></detailFilter></detailFilters></query>
+				<query name="list"><source><model/></source><selection><dataItem name="kpi_structure_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_structure_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_name" aggregate="none" rollupAggregate="none" label="ตัวบ่งชี้"><expression>[Model].[Dashboard_2].[kpi_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_type_name" aggregate="none" rollupAggregate="none" label="ประเภทปีปฏิทิน"><expression>[Model].[Dashboard_2].[calendar_type_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="period_name" aggregate="none" rollupAggregate="none" label="ช่วงเวลา"><expression>[Model].[Dashboard_2].[period_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_uom_name" aggregate="none" rollupAggregate="none" label="หน่วยนับ"><expression>[Model].[Dashboard_2].[kpi_uom_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="benchmark_value" aggregate="none" label="ค่าเปรียบเทียบ"><expression>[Model].[Dashboard_2].[benchmark_value]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="target_value" aggregate="none" label="เป้าหมาย"><expression>[Model].[Dashboard_2].[target_value]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="actual_value" aggregate="none" label="ผลดำเนินงาน"><expression>[Model].[Dashboard_2].[actual_value]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="percent_actual_vs_target" aggregate="none" label="เทียบช่วงเวลาที่แล้ว %"><expression>[Model].[Dashboard_2].[percent_actual_vs_target]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="percent_actual_change" aggregate="none" label="ผลเทียบเป้า %"><expression>[Model].[Dashboard_2].[percent_actual_change]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_score" aggregate="none" label="คะแนนประเมิน"><expression>[Model].[Dashboard_2].[kpi_score]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="formula_desc" aggregate="none" rollupAggregate="none"><expression>[Model].[Dashboard_2].[formula_desc]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_year" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_year]
+	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_year]
+ ELSE [Model].[Dashboard_2].[fiscal_year] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_month_no" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_month_no]	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_month_no]
+ ELSE [Model].[Dashboard_2].[fiscal_month_no] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[calendar_type_id] = ?paramTypeYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_month_no] = ?paramMonth?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_level_id] = ?paramLv?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[org_id] = ?paramOrg?</filterExpression></detailFilter></detailFilters></query><query name="BulletChart"><source><model/></source><selection><dataItem name="actual_value" aggregate="average"><expression>[Model].[Dashboard_2].[actual_value]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="target_value"><expression>[Model].[Dashboard_2].[target_value]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_id"><expression>[Model].[Dashboard_2].[kpi_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_year" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_year]
+	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_year]
+ ELSE [Model].[Dashboard_2].[fiscal_year] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem><dataItem name="calendar_month_no" aggregate="none" rollupAggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_month_no]	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_month_no]
+ ELSE [Model].[Dashboard_2].[fiscal_month_no] END
+</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="unknown" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[calendar_type_id] = ?paramTypeYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_year] = ?paramYear?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[calendar_month_no] = ?paramMonth?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_group_id] = ?paramGroup?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[kpi_level_id] = ?paramLv?</filterExpression></detailFilter><detailFilter use="optional"><filterExpression>[Model].[Dashboard_2].[org_id] = ?paramOrg?</filterExpression></detailFilter></detailFilters></query><query name="qparamMonth"><source><model/></source><selection><dataItem name="academic_month_no" aggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_month_no]
+	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_month_no]
+	ELSE 
+		[Model].[Dashboard_2].[fiscal_month_no] 
+END
+</expression></dataItem><dataItem name="th_month_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[th_month_name]</expression></dataItem></selection></query><query name="qparamGroup"><source><model/></source><selection><dataItem name="kpi_group_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_group_id]</expression></dataItem><dataItem name="kpi_group_short_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[kpi_group_short_name]</expression></dataItem></selection></query><query name="qparamLv"><source><model/></source><selection><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_level_id]</expression></dataItem><dataItem name="kpi_level_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[kpi_level_name]</expression></dataItem></selection></query><query name="qparamFac"><source><model/></source><selection><dataItem name="faculty_code" aggregate="none"><expression>[Model].[Dashboard_2].[faculty_code]</expression></dataItem><dataItem name="faculty_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[faculty_name]</expression></dataItem></selection></query><query name="qparamOrg"><source><model/></source><selection><dataItem name="org_id" aggregate="none"><expression>[Model].[Dashboard_2].[org_id]</expression></dataItem><dataItem name="org_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[org_name]</expression></dataItem></selection></query><query name="qparamTypeYear"><source><model/></source><selection><dataItem name="calendar_type_id" aggregate="none"><expression>[Model].[Dashboard_2].[calendar_type_id]</expression></dataItem><dataItem name="calendar_type_name" aggregate="none" sort="ascending"><expression>[Model].[Dashboard_2].[calendar_type_name]</expression></dataItem></selection></query><query name="qparamYear"><source><model/></source><selection><dataItem name="academic_year" aggregate="none"><expression>case 
+	when ?paramTypeYear? = 1 
+		THEN [Model].[Dashboard_2].[calendar_year]
+	when ?paramTypeYear? = 2
+		THEN [Model].[Dashboard_2].[academic_year]
+	ELSE 
+		[Model].[Dashboard_2].[fiscal_year] 
+END
+</expression></dataItem></selection></query></queries>
+				<layouts>
+					<layout>
+						<reportPages>
+							<page name="Page1"><style><defaultStyles><defaultStyle refStyle="pg"/></defaultStyles></style>
+								<pageBody><style><defaultStyles><defaultStyle refStyle="pb"/></defaultStyles></style>
+									<contents>
+										<table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:100%;border:1pt solid navy"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><staticValue>รายงานผลการประเมินตัวบ่งชี้</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt;color:white;font-weight:bold;padding-left:10px"/></style></textItem></contents><style><CSS value="padding-top:10px;padding-bottom:10px;background-color:navy;color:white"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:99%;background-color:#F2F2F2;border:1pt solid silver"/></style><tableRows><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:100%;margin-top:5px;margin-bottom:5px"/></style><tableRows><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><staticValue>ประเภทปี</staticValue></dataSource><style><CSS value="padding-left:5px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="width:80px"/></style></tableCell><tableCell><contents><selectValue parameter="paramTypeYear" refQuery="qparamTypeYear" multiSelect="false" selectValueUI="dropdown" required="true" autoSubmit="true"><useItem refDataItem="calendar_type_id"><displayItem refDataItem="calendar_type_name"/></useItem><style><CSS value="width:90px;font-family:Tahoma;font-size:11pt"/></style><headerText><defaultText/></headerText></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>ปี</staticValue></dataSource><style><CSS value="padding-left:10px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="width:41px"/></style></tableCell><tableCell><contents><selectValue parameter="paramYear" refQuery="qparamYear" multiSelect="false" selectValueUI="dropdown" range="false" cascadeOn="paramTypeYear" autoSubmit="true" required="false"><useItem refDataItem="academic_year"/><style><CSS value="font-family:Tahoma;font-size:11pt;width:105px"/><dataFormat><numberFormat useGrouping="false"/></dataFormat></style><headerText><defaultText/></headerText></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>เดือน</staticValue></dataSource><style><CSS value="padding-left:10px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramMonth" refQuery="qparamMonth" multiSelect="false" selectValueUI="dropdown" required="false" cascadeOn="paramYear"><useItem refDataItem="academic_month_no"><displayItem refDataItem="th_month_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:105px;font-family:Tahoma;font-size:11pt"/></style><sortList><sortItem refDataItem="academic_month_no"/></sortList></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>กลุ่มตัวบ่งชี้</staticValue></dataSource><style><CSS value="padding-left:10px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents></tableCell><tableCell><contents><selectValue parameter="paramGroup" refQuery="qparamGroup" multiSelect="false" selectValueUI="dropdown" required="false"><useItem refDataItem="kpi_group_id"><displayItem refDataItem="kpi_group_short_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:100px;font-family:Tahoma;font-size:11pt"/></style><sortList><sortItem refDataItem="kpi_group_id"/></sortList></selectValue></contents></tableCell></tableCells></tableRow></tableRows></table></contents></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse"/></style><tableRows><tableRow><tableCells><tableCell><contents><textItem><dataSource><staticValue>ระดับตัวบ่งชี้</staticValue></dataSource><style><CSS value="padding-left:5px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="width:80px"/></style></tableCell><tableCell><contents><selectValue parameter="paramLv" refQuery="qparamLv" multiSelect="false" selectValueUI="dropdown" required="false" autoSubmit="true"><useItem refDataItem="kpi_level_id"><displayItem refDataItem="kpi_level_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="width:90px;font-family:Tahoma;font-size:11pt"/></style><sortList><sortItem refDataItem="kpi_level_id"/></sortList></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>คณะ</staticValue></dataSource><style><CSS value="padding-left:10px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="width:41px"/></style></tableCell><tableCell><contents><selectValue parameter="paramFac" refQuery="qparamFac" multiSelect="false" selectValueUI="dropdown" required="false" autoSubmit="true" cascadeOn="paramLv"><useItem refDataItem="faculty_code"><displayItem refDataItem="faculty_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="font-family:Tahoma;font-size:11pt;width:265px"/></style></selectValue></contents></tableCell><tableCell><contents><textItem><dataSource><staticValue>หลักสูตร</staticValue></dataSource><style><CSS value="padding-left:10px;font-family:Tahoma;font-size:11pt"/></style></textItem></contents><style><CSS value="width:70px"/></style></tableCell><tableCell><contents><selectValue parameter="paramOrg" refQuery="qparamOrg" multiSelect="false" selectValueUI="dropdown" required="false" cascadeOn="paramFac"><useItem refDataItem="org_id"><displayItem refDataItem="org_name"/></useItem><headerText><defaultText/></headerText><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></selectValue></contents><style><CSS value="padding-left:5px"/></style></tableCell></tableCells></tableRow></tableRows></table></contents></tableCell></tableCells></tableRow></tableRows></table></contents></tableCell><tableCell><contents><promptButton type="next">
+			<contents><textItem><dataSource><staticValue>เรียกดูข้อมูล</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents>
+			<style>
+				<defaultStyles>
+					<defaultStyle refStyle="bp"/>
+				</defaultStyles>
+			<CSS value="background-color:silver"/></style>
+		</promptButton></contents><style><CSS value="width:5%;text-align:center"/></style></tableCell></tableCells></tableRow></tableRows></table></contents><style><CSS value="padding-top:5px;padding-bottom:5px;text-align:center"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><HTMLItem description="Start ExpandCollapse">
+			<dataSource>
+				<staticValue>&lt;div id='tablestart'&gt;</staticValue>
+			</dataSource>
+		</HTMLItem><list horizontalPagination="true" name="List1" refQuery="kpi_stru" rowsPerPage="1000">
+											<listColumnTitleStyle><style><CSS value="display:none"/></style></listColumnTitleStyle>
+											
+											
+											<noDataHandler>
+												<contents>
+													<block>
+														<contents>
+															<textItem>
+																<dataSource>
+																	<staticValue>No Data Available</staticValue>
+																</dataSource>
+																<style>
+																	<CSS value="padding:10px 18px;"/>
+																</style>
+															</textItem>
+														</contents>
+													</block>
+												</contents>
+											</noDataHandler>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="ls"/>
+												</defaultStyles>
+												<CSS value="border-collapse:collapse;width:100%"/>
+											</style>
+										<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="font-family:Tahoma;font-size:12pt"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_structure_id"/></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/></style><contents><textItem><dataSource><staticValue/></dataSource></textItem></contents><listColumnRowSpan refDataItem="kpi_structure_id"/></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><staticValue>List</staticValue></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/></style><contents><list horizontalPagination="true" name="List2" refQuery="list">
+			<listColumnBodyStyle><style><CSS value="text-align:center;vertical-align:middle"/></style></listColumnBodyStyle>
+			<listColumnTitleStyle><style><CSS value="vertical-align:middle;text-align:center"/></style></listColumnTitleStyle>
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;width:100%;font-family:Tahoma;font-size:12pt"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="vertical-align:middle"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="text-align:left;width:400px"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><staticValue>Report</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><block>
+			<contents><image>
+			<dataSource>
+				<staticValue>../samples/images/Icon-Graph Bar2.png</staticValue>
+			</dataSource>
+		<style><CSS value="width:30px;height:30px"/></style><reportDrills><reportDrill name="Drill-Through Definition2"><drillLabel><dataSource><staticValue/></dataSource></drillLabel><drillTarget showInNewWindow="true"><reportPath path="/content/package[@name='For_Dashboard']/folder[@name='subDashboard']/report[@name='Dashboard_Report']"><XMLAttributes><XMLAttribute name="ReportName" value="Dashboard_Report" output="no"/><XMLAttribute name="class" value="report" output="no"/></XMLAttributes></reportPath><drillLinks><drillLink><drillTargetContext><parameterContext parameter="paramYear"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramYear"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramMonth"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramMonth"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramLv"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramLv"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramKpi"/></drillTargetContext><drillSourceContext><dataItemContext refDataItem="kpi_id"/></drillSourceContext></drillLink></drillLinks></drillTarget></reportDrill></reportDrills></image></contents>
+		</block></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><staticValue>สูตร</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><HTMLItem>
+			<dataSource>
+				
+			<reportExpression>'&lt;span title="'+[list].[formula_desc]+'"&gt;'</reportExpression></dataSource>
+		</HTMLItem><block>
+			<contents><image>
+			<dataSource>
+				<staticValue>../samples/images/Icon-Func.png</staticValue>
+			</dataSource>
+		<style><CSS value="width:30px;height:30px"/></style></image></contents>
+		</block><HTMLItem>
+			<dataSource>
+				<staticValue>&lt;/span&gt;</staticValue>
+			</dataSource>
+		</HTMLItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><staticValue>หลักฐาน</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><block>
+			<contents><image>
+			<dataSource>
+				<staticValue>../samples/images/sites-icon-large.png</staticValue>
+			</dataSource>
+		<style><CSS value="width:30px;height:30px"/></style><reportDrills><reportDrill name="Drill-Through Definition2"><drillLabel><dataSource><staticValue/></dataSource></drillLabel><drillTarget showInNewWindow="true"><reportPath path="/content/package[@name='For_Dashboard']/folder[@name='subDashboard']/report[@name='Dashboard_Evidence']"><XMLAttributes><XMLAttribute name="ReportName" value="Dashboard_Evidence" output="no"/><XMLAttribute name="class" value="report" output="no"/></XMLAttributes></reportPath><drillLinks><drillLink><drillTargetContext><parameterContext parameter="paramCDS"/></drillTargetContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramKpi"/></drillTargetContext><drillSourceContext><dataItemContext refDataItem="kpi_id"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramYear"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramYear"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramMonth"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramMonth"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramGroup"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramGroup"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramLv"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramLv"/></drillSourceContext></drillLink><drillLink><drillTargetContext><parameterContext parameter="paramOrg"/></drillTargetContext><drillSourceContext><parameterContext parameter="paramOrg"/></drillSourceContext></drillLink></drillLinks></drillTarget></reportDrill></reportDrills></image></contents>
+		</block></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="calendar_type_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="calendar_type_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="period_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="period_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_uom_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_uom_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="benchmark_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="benchmark_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="target_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="target_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="actual_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="actual_value"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="percent_actual_vs_target"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="percent_actual_change"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="percent_actual_change"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="percent_actual_vs_target"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><staticValue>กราฟผลเทียบเป้า</staticValue></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles></style><contents><v2_bulletChart orientation="horizontal" maxHotspots="10000" name="Bullet Chart1" refQuery="BulletChart">
+																								<style>
+																									<CSS value="padding:0px;width:100px;height:40px"/>
+																									<defaultStyles>
+																										<defaultStyle refStyle="ch"/>
+																									</defaultStyles>
+																								</style>
+																								<noDataHandler>
+																									<contents>
+																										<block>
+																											<contents>
+																												<textItem>
+																													<dataSource>
+																														<staticValue>No Data Available</staticValue>
+																													</dataSource>
+																													<style>
+																														<CSS value="padding:10px 18px;"/>
+																													</style>
+																												</textItem>
+																											</contents>
+																										</block>
+																									</contents>
+																								</noDataHandler>
+																								<v2_basicTooltips/>
+																								<v2_bulletIndicator barIndicatorWidth="15">
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect>
+																											<v2_solidColor color="#5876AE"/>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																								</v2_bulletIndicator>
+																								<v2_targetIndicator pointIndicatorSize="14px">
+																									<v2_pointPaletteEntry markerShape="verticalBar">
+																										<v2_fillEffect>
+																											<v2_solidColor transparency="0"/>
+																										</v2_fillEffect>
+																									</v2_pointPaletteEntry>
+																								</v2_targetIndicator>
+																								<v2_numericAxis>
+																									<v2_axisRange scale="linear">
+																										<v2_automaticRange sameRangeAllInstances="false" includeZeroForAutoScale="true"/>
+																									</v2_axisRange>
+																									
+																									<v2_majorGridlines lineWeight="0" lineColor="#CCCCCC"/>
+																									<v2_axisLine lineWeight="0"/>
+																									<v2_axisTitle refQuery="BulletChart">
+																										<v2_chartTextContents>
+																											<v2_automaticText/>
+																										</v2_chartTextContents>
+																										<style>
+																											<defaultStyles>
+																												<defaultStyle refStyle="at"/>
+																											</defaultStyles>
+																										<CSS value="display:none"/></style>
+																									</v2_axisTitle>
+																								</v2_numericAxis>
+																								<v2_numericOrdinalColoredRegions>
+																									<v2_numericOrdinalColoredRegion refQuery="BulletChart">
+																										<v2_startNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="0"/>
+																										</v2_startNumericPosition>
+																										<v2_endNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="50"/>
+																										</v2_endNumericPosition>
+																										<v2_startOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="0"/>
+																										</v2_startOrdinalPosition>
+																										<v2_endOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="100"/>
+																										</v2_endOrdinalPosition>
+																										
+																									<v2_fillEffect>
+																											<v2_solidColor transparency="50" color="#74AFFC"/>
+																										</v2_fillEffect></v2_numericOrdinalColoredRegion>
+																									<v2_numericOrdinalColoredRegion refQuery="BulletChart">
+																										<v2_startNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="50"/>
+																										</v2_startNumericPosition>
+																										<v2_endNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="75"/>
+																										</v2_endNumericPosition>
+																										<v2_startOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="0"/>
+																										</v2_startOrdinalPosition>
+																										<v2_endOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="100"/>
+																										</v2_endOrdinalPosition>
+																										
+																									<v2_fillEffect>
+																											<v2_solidColor transparency="50" color="#74AFFC"/>
+																										</v2_fillEffect></v2_numericOrdinalColoredRegion>
+																									<v2_numericOrdinalColoredRegion refQuery="BulletChart">
+																										<v2_startNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="75"/>
+																										</v2_startNumericPosition>
+																										<v2_endNumericPosition>
+																											<v2_percentAlongAxis percentAlongAxis="100"/>
+																										</v2_endNumericPosition>
+																										<v2_startOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="0"/>
+																										</v2_startOrdinalPosition>
+																										<v2_endOrdinalPosition>
+																											<v2_percentAlongAxis percentAlongAxis="100"/>
+																										</v2_endOrdinalPosition>
+																										
+																									<v2_fillEffect>
+																											<v2_solidColor transparency="50" color="#74AFFC"/>
+																										</v2_fillEffect></v2_numericOrdinalColoredRegion>
+																								</v2_numericOrdinalColoredRegions>
+																								<XMLAttributes>
+																									<XMLAttribute name="beganAsMicroChart" value="true" output="no"/>
+																								<XMLAttribute name="titlesExpanded" value="true" output="no"/></XMLAttributes>
+																								<v2_bulletMeasure refDataItem="actual_value"/><v2_bulletTargetMeasure refDataItem="target_value"/><v2_chartBody><style><CSS value="background-color:white"/></style></v2_chartBody><masterDetailLinks><masterDetailLink><masterContext><dataItemContext refDataItem="kpi_id"/></masterContext><detailContext><dataItemContext refDataItem="kpi_id"/></detailContext></masterDetailLink></masterDetailLinks></v2_bulletChart>
+																						</contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_score"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_score"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="display:none"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_id"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles><CSS value="display:none"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_id"/></dataSource></textItem></contents></listColumnBody></listColumn></listColumns><masterDetailLinks><masterDetailLink><masterContext><dataItemContext refDataItem="kpi_structure_id"/></masterContext><detailContext><dataItemContext refDataItem="kpi_structure_id"/></detailContext></masterDetailLink></masterDetailLinks><propertyList><propertyItem refDataItem="formula_desc"/></propertyList></list></contents></listColumnBody></listColumn></listColumns><listGroups><listGroup refDataItem="kpi_structure_id"><listHeader><listRows><listRow><rowCells><rowCell colSpan="2"><contents><HTMLItem description="FunctionExpColl">
+			<dataSource>
+				<staticValue>&lt;script&gt;
+
+//  These settings you can change to modify the report processing
+var UOM="px";  		// Set to unit of measure for padding
+var INDENT_SIZE=20; 	// Set to indent padding step size.  i.e setting to 20 means the padding steps are 20,40,60,80, etc
+
+var UOM_SIZE = UOM.length;
+
+function stripTrailing(string,num) {
+
+	if ( string == "") {return parseInt(0);} else {return parseInt(string.substring(0,string.length-num));}
+}
+
+function ExpandCollapse( el ) 
+{ 
+	// Grab the ROW that was clicked and the TABLE that contains it
+
+	var tr = el.parentElement.parentElement; 
+	var tbl = tr.parentElement.parentElement; 
+
+	// Set the alternating display values for hiding/showing the row
+
+	var sDisplay = ( el.src.indexOf( "minus" ) == -1 ) ? "" : "none"; 
+	var sDisplayReverse = ( el.src.indexOf( "minus" ) == -1 ) ? "none" : ""; 
+
+	//Switch the icon for the clicked row
+
+	el.src = "../samples/images/" + ( el.src.indexOf( "minus" ) == -1 ? "minus" : "plus" ) + ".gif"; 
+
+	// Starting with the row below the clicked row, start checking each row
+
+	for ( var i = tr.rowIndex + 1; i &lt; tbl.rows.length; i++ ) 
+	{ 
+		// Set the Current row indicator nad the left padding value
+		var trCurrent = tbl.rows( i ); 
+		var trCurrentLeft = trCurrent.cells(0).style.paddingLeft; 
+
+		// if the current row contains an IMG in it, it's a clickable level and we either have to stop processing,
+		//     or reset the icons to a + as it's being collapsed 
+		if ( trCurrent.cells( 0 ).firstChild &amp;&amp; trCurrent.cells( 0 ).getElementsByTagName( "IMG" ).length ) 
+		{ 
+		
+			// If the current row is at the same level or above in the tree, then stop processing,
+			//    else reset all the signs below it, essentially collapsing all branches underneath the one that is beig collapsed.
+
+			if (  stripTrailing(trCurrentLeft , UOM_SIZE) &lt;= stripTrailing(tr.cells(0).style.paddingLeft , UOM_SIZE) )
+			{ break; }
+			else
+			{
+				if (el.src.indexOf( "minus" ) == -1 ) 
+				{ 
+					trCurrent.cells(0).getElementsByTagName("IMG").item(0).src = "../samples/images/plus.gif"; 
+				} 
+			} 
+		} 
+
+		// Now, we determine if the row should be hidden or shown.
+		if ( eval(stripTrailing(tr.cells(0).style.paddingLeft, UOM_SIZE)+ INDENT_SIZE) &lt; stripTrailing(trCurrentLeft, UOM_SIZE) &amp;&amp; el.src.indexOf( "minus" ) &gt;0 ) 
+		{ 
+			trCurrent.style.display = sDisplayReverse; 
+		} else 
+		{ 
+			trCurrent.style.display = sDisplay; 
+		} 
+	} 
+} 
+
+function StartHidden(el)
+{
+
+	var tbl=el.parentElement.parentElement.parentElement.parentElement;
+	for (var i = 0; i &lt; tbl.rows.length; i++)
+	{
+		var trCurrent = tbl.rows(i);
+		if (trCurrent.cells(0).style.paddingLeft.indexOf(UOM) &gt; -1)
+		{
+			trCurrent.style.display = "none";
+		}
+	}
+}
+
+
+&lt;/script&gt;
+</staticValue>
+			</dataSource>
+		</HTMLItem><HTMLItem description="Button">
+			<dataSource>
+				<staticValue>&lt;img onclick='ExpandCollapse(this)' src='../samples/images/plus.gif' style='cursor:hand; vertical-align:middle; margin-right:2px'/&gt;&lt;span onclick='ExpandCollapse(this.previousSibling)' style='cursor:hand'&gt;
+</staticValue>
+			</dataSource>
+		</HTMLItem><textItem><dataSource><dataItemValue refDataItem="kpi_structure_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:12pt"/></style></textItem><HTMLItem>
+			<dataSource>
+				<staticValue>&lt;/span&gt;</staticValue>
+			</dataSource>
+		</HTMLItem></contents><style><defaultStyles><defaultStyle refStyle="oh"/></defaultStyles><CSS value="height:30px;vertical-align:middle"/></style></rowCell></rowCells></listRow></listRows></listHeader></listGroup></listGroups><conditionalRender refVariable="Show"><renderFor refVariableValue="1"/></conditionalRender></list><HTMLItem description="Func StartHidden End">
+			<dataSource>
+				<staticValue>&lt;/div&gt;
+&lt;script&gt;
+
+var x = document.getElementById('tablestart').getElementsByTagName('img');
+
+for (var h = 0; h &lt; x.length; h++){
+
+	var tr = x[h].parentElement.parentElement;
+//	var tr = document.getElementsById('imgrow').parentElement.parentElement;
+	var tbl = tr.parentElement.parentElement;
+
+
+//var trCurrent=tbl.rows(tr.rowIndex + 1); these 2 lines will close the row next to the one with '+' image
+//trCurrent.style.display='none';                  -- for test only
+
+	for (var i = tr.rowIndex + 1; i &lt; tbl.rows.length; i++){
+		var trCurrent = tbl.rows(i);
+		if(trCurrent.cells(0).getElementsByTagName('img').length){
+//			break;
+			trCurrent.style.display = 'none';
+		}else{
+//			alert(trCurrent.cells(0).getElementsByTagName('img').length);
+//			trCurrent.style.display = 'none';
+			break;
+		}
+	}
+}
+&lt;/script&gt;
+
+</staticValue>
+			</dataSource>
+		</HTMLItem></contents><style><CSS value="padding-top:10px;padding-bottom:10px"/></style></tableCell></tableCells></tableRow></tableRows></table>
+									</contents>
+								</pageBody>
+								
+								<pageFooter>
+									<contents>
+										<table>
+											<tableRows>
+												<tableRow>
+													<tableCells>
+														<tableCell>
+															<contents>
+																<date>
+																	<style>
+																		<dataFormat>
+																			<dateFormat/>
+																		</dataFormat>
+																	</style>
+																</date>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:left;width:25%"/>
+															</style>
+														</tableCell>
+														<tableCell>
+															<contents>
+																<pageNumber/>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:center;width:50%"/>
+															</style>
+														</tableCell>
+														<tableCell>
+															<contents>
+																<time>
+																	<style>
+																		<dataFormat>
+																			<timeFormat/>
+																		</dataFormat>
+																	</style>
+																</time>
+															</contents>
+															<style>
+																<CSS value="vertical-align:top;text-align:right;width:25%"/>
+															</style>
+														</tableCell>
+													</tableCells>
+												</tableRow>
+											</tableRows>
+											<style>
+												<defaultStyles>
+													<defaultStyle refStyle="tb"/>
+												</defaultStyles>
+												<CSS value="border-collapse:collapse;width:100%"/>
+											</style>
+										</table>
+									</contents>
+									<style>
+										<defaultStyles>
+											<defaultStyle refStyle="pf"/>
+										</defaultStyles>
+										<CSS value="padding-top:10px"/>
+									</style>
+								</pageFooter>
+							</page>
+						</reportPages>
+					</layout>
+				</layouts>
+			<XMLAttributes><XMLAttribute name="RS_CreateExtendedDataItems" value="true" output="no"/><XMLAttribute name="listSeparator" value="," output="no"/><XMLAttribute name="RS_modelModificationTime" value="2016-01-27T15:20:01.060Z" output="no"/></XMLAttributes><reportName>รายงานผลการประเมินตัวบ่งชี้_2016_typeyear</reportName><reportVariables><reportVariable type="boolean" name="Show">
+			<reportExpression>ParamDisplayValue('paramOrg') is not null</reportExpression>
+			<variableValues>
+				<variableValue value="1"/>
+			</variableValues>
+		</reportVariable></reportVariables></report>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bmtactionlog project="C:\Users\GJCognos\Desktop\GJ REPORT\Framework\GJ\GJ.cpf" templatedir="../templates/bmt/Cr1Model" timestamp="20160127212028275" user="GJCognos" version="10.2.6100.82"><transaction event="StartSession" saved="true" seq="1" timestamp="20160127212028275" uniqueId="B8EC7D14B8EC7D14" user="GJCognos"/><transaction saved="true" seq="2" timestamp="20160127212048959" uniqueId="8F8CD3D08F8CD3D0"><action seq="1" type="SetActiveLocale"><inputparams><param seq="1" type="i18nstring"><value>en</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="3" timestamp="20160127213211295" uniqueId="8BA0F4438BA0F443"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Report2]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select kr.month_id
+,kpi.calendar_type_id
+,kr.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,kr.kpi_group_id
+,kr.kpi_group_name
+,kr.kpi_group_short_name
+,kr.kpi_structure_id
+,kr.kpi_structure_name
+,kr.kpi_level_id
+,kr.kpi_level_name
+,org.path
+,kr.org_id
+,kr.org_name
+,org.university_code
+,org.university_name
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_code ELSE org.faculty_code END as faculty_code
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_name ELSE org.faculty_name END as faculty_name
+,org.course_code
+,org.course_name
+,kr.kpi_id
+,kr.kpi_name
+,kr.kpi_uom_name
+,kr.target_value
+,kr.multiplicand
+,kr.denominator as denominatorm
+,CASE WHEN kr.criteria_type_id = 2 THEN concat(kr.actual_value,&apos; (&apos;,kpiqua.qualitative,&apos;)&apos;) ELSE kr.actual_value END as val
+,kr.score as kpi_score
+,orgstr.kpi_structure_score
+from kpi_result kr
+inner join org on org.org_id = kr.org_id
+inner join kpi on kpi.kpi_id = kr.kpi_id
+inner join sys_month sm on kr.month_id = sm.month_id
+left join  (select ksr.month_id
+			,ksr.kpi_group_id
+			,ksr.kpi_level_id
+			,ksr.org_id
+			,ksr.kpi_structure_id
+			,ksr.score as kpi_structure_score
+			from org_structure_result ksr
+			)orgstr on orgstr.month_id = kr.month_id
+			and orgstr.kpi_group_id = kr.kpi_group_id
+			and orgstr.kpi_level_id = kr.kpi_level_id
+			and orgstr.org_id = kr.org_id
+			and orgstr.kpi_structure_id = kr.kpi_structure_id
+left join  (select kr.month_id
+			,kr.kpi_group_id
+			,kr.kpi_level_id
+			,kr.org_id
+			,kr.kpi_id
+			, GROUP_CONCAT(qc.running_no  ORDER BY qc.running_no SEPARATOR &apos;,&apos;) as  qualitative
+			from kpi_result kr, kpi_result_detail kpird, qualitative_criteria qc
+			where kr.result_id = kpird.result_id
+			and kpird.criteria_id = qc.criteria_id
+			and action_flag = 1
+			GROUP BY kr.month_id
+			,kr.kpi_group_id
+			,kr.kpi_level_id
+			,kr.org_id
+			,kr.kpi_id
+			)kpiqua on kpiqua.month_id = kr.month_id
+			and kpiqua.kpi_group_id = kr.kpi_group_id
+			and kpiqua.kpi_level_id = kr.kpi_level_id
+			and kpiqua.org_id = kr.org_id
+			and kpiqua.kpi_id = kr.kpi_id			
+order by kr.month_id
+,kr.kpi_group_id
+,kr.kpi_structure_id
+,kr.kpi_level_id
+,kr.org_id
+,kr.kpi_id</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Report2]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="4" timestamp="20160127214853522" uniqueId="FD3FDFFAFD3FDFFA"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_1]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select orgsr.month_id
+, kpi.calendar_type_id
+, ct.calendar_type_name
+, sys.calendar_year
+, sys.academic_year
+, sys.fiscal_year
+, sys.calendar_month_no
+, sys.academic_month_no
+, sys.fiscal_month_no
+, sys.th_month_name
+, kpi_group_short_name
+, orgsr.kpi_level_id
+, orgsr.kpi_level_name
+, orgsr.org_id
+, trim(orgsr.org_name) as org_name
+, org.path
+, org.university_code
+, org.university_name
+, CASE WHEN orgsr.kpi_level_id = 1 THEN org.university_code ELSE org.faculty_code END as faculty_code
+, CASE WHEN orgsr.kpi_level_id = 1 THEN org.university_name ELSE org.faculty_name END as faculty_name
+, org.course_code
+, org.course_name
+, orgsr.kpi_structure_id
+, orgsr.kpi_structure_name
+, orgsr.score as score_structure
+, orgsr.threshold_name
+, trim(substr(orgsr.threshold_name,18,5)) as threshold_short_name
+, ore.score_org
+from org_structure_result orgsr 
+, sys_month sys
+, kpi_group kgro
+, org 
+, ( select ore.month_id
+	, org_id
+	, score as score_org
+	from org_result ore
+) ore
+, kpi
+, calendar_type ct
+where orgsr.month_id = sys.month_id
+and orgsr.kpi_group_id = kgro.kpi_group_id
+and orgsr.org_id = org.org_id
+and orgsr.org_id = ore.org_id
+and sys.month_id = ore.month_id
+and orgsr.kpi_structure_id = kpi.kpi_structure_id
+and ct.calendar_type_id = kpi.calendar_type_id
+group by orgsr.month_id
+, kpi.calendar_type_id
+, ct.calendar_type_name
+, sys.calendar_year
+, sys.academic_year
+, sys.fiscal_year
+, sys.calendar_month_no
+, sys.academic_month_no
+, sys.fiscal_month_no
+, sys.th_month_name
+, kpi_group_short_name
+, orgsr.kpi_level_id
+, orgsr.kpi_level_name
+, orgsr.org_id
+, trim(orgsr.org_name)
+, org.path
+, org.university_code
+, org.university_name
+, CASE WHEN orgsr.kpi_level_id = 1 THEN org.university_code ELSE org.faculty_code END
+, CASE WHEN orgsr.kpi_level_id = 1 THEN org.university_name ELSE org.faculty_name END
+, org.course_code
+, org.course_name
+, orgsr.kpi_structure_id
+, orgsr.kpi_structure_name
+, orgsr.score
+, orgsr.threshold_name
+, trim(substr(orgsr.threshold_name,18,5))
+, ore.score_org</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_1]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="5" timestamp="20160127214937639" uniqueId="483B953E483B953E" user="GJCognos"/><transaction saved="true" seq="6" timestamp="20160127215226841" uniqueId="AA96376FAA96376F"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select kr.month_id
+,kpi.calendar_type_id
+,kr.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,kr.kpi_structure_id
+,kr.kpi_structure_name
+,kr.kpi_id
+,kr.kpi_name
+,org.path
+,kr.org_id
+,kr.org_name
+,org.university_code
+,org.university_name
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_code ELSE org.faculty_code END as faculty_code
+,CASE WHEN kr.kpi_level_id = 1 THEN org.university_name ELSE org.faculty_name END as faculty_name
+,org.course_code
+,org.course_name
+,kr.kpi_level_id
+,kr.kpi_level_name
+,kr.kpi_group_id
+,kr.kpi_group_name
+,kr.kpi_group_short_name
+,kr.formula_desc
+,kr.period_name	
+,kr.kpi_uom_name
+,kr.benchmark_value
+,kr.target_value
+,kr.actual_value
+,kr.percent_actual_vs_target
+,kr.percent_actual_change
+,kr.score as kpi_score
+from kpi_result kr, sys_month sm, org , kpi
+where kr.month_id = sm.month_id
+and org.org_id = kr.org_id
+and kpi.kpi_id = kr.kpi_id
+order by kr.academic_year
+,sm.academic_month_no
+,kr.kpi_group_id
+,kr.kpi_level_id
+,kr.org_id
+,kr.kpi_structure_id
+,kr.kpi_id</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="7" timestamp="20160127215242055" uniqueId="AA15F4ADAA15F4AD" user="GJCognos"/><transaction saved="true" seq="8" timestamp="20160127215243971" uniqueId="5850749458507494"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2_Evidence]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select month_id
+,calendar_type_id
+,calendar_type_name
+,calendar_year
+,academic_year
+,fiscal_year
+,calendar_month_no
+,academic_month_no
+,fiscal_month_no
+,th_month_name
+,no_of_month
+,caseMonth
+,org_id
+,org_name
+,kpi_group_id
+,kpi_group_short_name
+,kpi_level_id
+,kpi_level_name
+,kpi_structure_id
+,kpi_structure_name
+,kpi_id
+,kpi_name
+,cds_name
+,support_data_name
+,running_no
+,evidence_flag
+,cds_value
+,evidence_path
+,row_type
+,created_by
+FROM
+(
+select cdsre.month_id
+,kpi.calendar_type_id
+,ct.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,per.no_of_month
+,kpi.kpi_group_id
+,kpi_group_short_name
+,kpi.kpi_structure_id
+,kpi_structure.kpi_structure_name
+,CASE
+  WHEN kpi.calendar_type_id = 1 THEN 
+		CASE 
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN calendar2month
+			WHEN per.no_of_month = 3 THEN calendar3month
+			WHEN per.no_of_month = 4 THEN calendar4month
+			WHEN per.no_of_month = 5 THEN calendar5month
+			WHEN per.no_of_month = 6 THEN calendar6month
+			WHEN per.no_of_month = 7 THEN calendar2month
+			WHEN per.no_of_month = 8 THEN calendar3month
+			WHEN per.no_of_month = 9 THEN calendar4month
+			WHEN per.no_of_month = 10 THEN calendar5month
+			WHEN per.no_of_month = 11 THEN calendar6month
+			WHEN per.no_of_month = 11 THEN calendar6month
+		END
+  WHEN kpi.calendar_type_id = 2 THEN 
+		CASE
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN academic2month
+			WHEN per.no_of_month = 3 THEN academic3month
+			WHEN per.no_of_month = 4 THEN academic4month
+			WHEN per.no_of_month = 5 THEN academic5month
+			WHEN per.no_of_month = 6 THEN academic6month
+			WHEN per.no_of_month = 7 THEN academic2month
+			WHEN per.no_of_month = 8 THEN academic3month
+			WHEN per.no_of_month = 9 THEN academic4month
+			WHEN per.no_of_month = 10 THEN academic5month
+			WHEN per.no_of_month = 11 THEN academic6month
+			WHEN per.no_of_month = 11 THEN academic6month
+		END
+	WHEN kpi.calendar_type_id = 3 THEN 
+		CASE
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN fiscal2month
+			WHEN per.no_of_month = 3 THEN fiscal3month
+			WHEN per.no_of_month = 4 THEN fiscal4month
+			WHEN per.no_of_month = 5 THEN fiscal5month
+			WHEN per.no_of_month = 6 THEN fiscal6month
+			WHEN per.no_of_month = 7 THEN fiscal2month
+			WHEN per.no_of_month = 8 THEN fiscal3month
+			WHEN per.no_of_month = 9 THEN fiscal4month
+			WHEN per.no_of_month = 10 THEN fiscal5month
+			WHEN per.no_of_month = 11 THEN fiscal6month
+			WHEN per.no_of_month = 11 THEN fiscal6month
+		END
+END as caseMonth
+,kpi.kpi_level_id
+,lv.kpi_level_name
+,cdsre.org_id
+,org.org_name
+,map.kpi_id
+,kpi.kpi_name
+,cds.cds_name
+,support_data_name
+,map.cds_id as running_no
+,evidence_flag
+,cds_value
+,evidence_path
+,row_type
+,cdev.created_by
+from kpi_cds_mapping map 
+left join kpi on map.kpi_id = kpi.kpi_id
+left join kpi_group on kpi_group.kpi_group_id = kpi.kpi_group_id
+left join kpi_structure on kpi_structure.kpi_structure_id = kpi.kpi_structure_id
+left join cds on map.cds_id = cds.cds_id
+left join cds_result cdsre on cds.cds_id = cdsre.cds_id
+left join sys_month sm on sm.month_id = cdsre.month_id
+left join kpi_level lv on kpi.kpi_level_id = lv.kpi_level_id
+left join org on org.org_id = cdsre.org_id
+left join cds_result_detail cdsrede on cdsrede.result_id = cdsre.result_id
+left join cds_evidence cdev on cdev.result_detail_id = cdsrede.result_detail_id
+left join period per on per.period_id = kpi.period_id
+left join calendar_type ct on ct.calendar_type_id = kpi.calendar_type_id
+
+UNION
+
+select kre.month_id
+,kpi.calendar_type_id
+,kre.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,&apos;&apos; as no_of_month
+,kre.kpi_group_id
+,kpi_group_short_name
+,kre.kpi_structure_id
+,kpi_structure_name
+,th_month_name as caseMonth
+,kre.kpi_level_id
+,kre.kpi_level_name
+,kre.org_id
+,kre.org_name
+,kre.kpi_id
+,kre.kpi_name
+,criteria_desc as cds_name
+,&apos;&apos; as support_data_name
+,running_no
+,evidence_flag
+,0 as cds_value
+,evidence_path
+,null as row_type
+,ke.created_by
+from kpi_result kre, kpi_result_detail kred, qualitative_criteria qc, kpi_evidence ke , sys_month sm , kpi
+where kre.result_id = kred.result_id
+and kred.criteria_id = qc.criteria_id
+and kred.result_detail_id = ke.result_detail_id
+and kre.month_id = sm.month_id
+and kpi.kpi_id = kre.kpi_id
+and kred.action_flag = &apos;1&apos;
+)g</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2_Evidence]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="9" timestamp="20160127221635777" uniqueId="B585BFB7B585BFB7" user="GJCognos"/><transaction saved="true" seq="10" timestamp="20160127221653660" uniqueId="67271CC767271CC7"><action seq="1" type="UpdateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2_Report]</value></param><param seq="2" type="cclnode"><value><![CDATA[<updateObjectRequest><tasks><task name="updateProperty"><parameters><param name="propertyType" value="query"/><param name="propertyValue"><sql>select cdsre.month_id
+,kpi.calendar_type_id
+,ct.calendar_type_name
+,sm.calendar_year
+,sm.academic_year
+,sm.fiscal_year
+,sm.calendar_month_no
+,sm.academic_month_no
+,sm.fiscal_month_no
+,sm.th_month_name
+,CASE
+  WHEN kpi.calendar_type_id = 1 THEN 
+		CASE
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN calendar2month
+			WHEN per.no_of_month = 3 THEN calendar3month
+			WHEN per.no_of_month = 4 THEN calendar4month
+			WHEN per.no_of_month = 5 THEN calendar5month
+			WHEN per.no_of_month = 6 THEN calendar6month
+			WHEN per.no_of_month = 7 THEN calendar2month
+			WHEN per.no_of_month = 8 THEN calendar3month
+			WHEN per.no_of_month = 9 THEN calendar4month
+			WHEN per.no_of_month = 10 THEN calendar5month
+			WHEN per.no_of_month = 11 THEN calendar6month
+			WHEN per.no_of_month = 11 THEN calendar6month
+		END
+  WHEN kpi.calendar_type_id = 2 THEN 
+		CASE
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN academic2month
+			WHEN per.no_of_month = 3 THEN academic3month
+			WHEN per.no_of_month = 4 THEN academic4month
+			WHEN per.no_of_month = 5 THEN academic5month
+			WHEN per.no_of_month = 6 THEN academic6month
+			WHEN per.no_of_month = 7 THEN academic2month
+			WHEN per.no_of_month = 8 THEN academic3month
+			WHEN per.no_of_month = 9 THEN academic4month
+			WHEN per.no_of_month = 10 THEN academic5month
+			WHEN per.no_of_month = 11 THEN academic6month
+			WHEN per.no_of_month = 11 THEN academic6month
+		END
+	WHEN kpi.calendar_type_id = 3 THEN 
+		CASE
+			WHEN per.no_of_month = 1 THEN th_month_name
+			WHEN per.no_of_month = 2 THEN fiscal2month
+			WHEN per.no_of_month = 3 THEN fiscal3month
+			WHEN per.no_of_month = 4 THEN fiscal4month
+			WHEN per.no_of_month = 5 THEN fiscal5month
+			WHEN per.no_of_month = 6 THEN fiscal6month
+			WHEN per.no_of_month = 7 THEN fiscal2month
+			WHEN per.no_of_month = 8 THEN fiscal3month
+			WHEN per.no_of_month = 9 THEN fiscal4month
+			WHEN per.no_of_month = 10 THEN fiscal5month
+			WHEN per.no_of_month = 11 THEN fiscal6month
+			WHEN per.no_of_month = 11 THEN fiscal6month
+		END
+END as caseMonth
+,kpi.kpi_level_id
+,lv.kpi_level_name
+,cdsre.org_id
+,org.org_name
+,map.kpi_id
+,kpi.kpi_name
+,map.cds_id
+,cds.cds_name
+,evidence_flag
+,cds_value
+,evidence_path
+from kpi_cds_mapping map 
+left join kpi on map.kpi_id = kpi.kpi_id
+left join cds on map.cds_id = cds.cds_id
+left join cds_result cdsre on cds.cds_id = cdsre.cds_id
+left join sys_month sm on sm.month_id = cdsre.month_id
+left join kpi_level lv on kpi.kpi_level_id = lv.kpi_level_id
+left join org on org.org_id = cdsre.org_id
+left join cds_result_detail cdsrede on cdsrede.result_id = cdsre.result_id
+left join cds_evidence cdev on cdev.result_detail_id = cdsrede.result_detail_id
+left join period per on per.period_id = kpi.period_id
+left join calendar_type ct on ct.calendar_type_id = kpi.calendar_type_id</sql></param><param name="queryType" value="native"/></parameters></task></tasks></updateObjectRequest>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="2" type="EvaluateObject"><inputparams><param seq="1" type="handle"><mappingpath>querySubject</mappingpath><value>[Model].[Dashboard_2_Report]</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="3" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action><action seq="4" type="ResetPromptValues"><inputparams><param seq="1" type="integer"><value>1</value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="11" timestamp="20160127221929595" uniqueId="91C2508991C25089" user="GJCognos"/><transaction saved="true" seq="12" timestamp="20160127221938613" uniqueId="0D7796830D779683"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>securityView</mappingpath><value>[].[securityViews].[For Report]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="13" timestamp="20160127221938647" uniqueId="A4A99FD7A4A99FD7"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>package</mappingpath><value>[].[packages].[For Report]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="14" timestamp="20160127221948764" uniqueId="8326CEAD8326CEAD"/><transaction saved="true" seq="15" timestamp="20160127221949264" uniqueId="1EFE07DB1EFE07DB"><action seq="1" type="Undo"><inputparams/><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="16" timestamp="20160127221957795" uniqueId="64C5A89864C5A898"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>securityView</mappingpath><value>[].[securityViews].[For_Dashboard]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="17" timestamp="20160127221957819" uniqueId="B332BF78B332BF78"><action seq="1" type="SetSecurityViewAccess"><inputparams><param seq="1" type="handle"><mappingpath>package</mappingpath><value>[].[packages].[For_Dashboard]</value></param><param seq="2" type="integer"><value>1</value></param><param seq="3" type="cclnode"><value><![CDATA[<securityObjects/>]]></value></param></inputparams><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction saved="true" seq="18" timestamp="20160127222000848" uniqueId="9BD62D1A9BD62D1A"/><transaction saved="true" seq="19" timestamp="20160127222001116" uniqueId="F0655C67F0655C67"><action seq="1" type="Undo"><inputparams/><domchanges/><result success="t"><outputparams/></result></action></transaction><transaction event="Save" saved="true" seq="20" timestamp="20160127222011031" uniqueId="B33390FBB33390FB" user="GJCognos"/></bmtactionlog>

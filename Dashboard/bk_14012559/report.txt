@@ -1,0 +1,353 @@
+<report xmlns="http://developer.cognos.com/schemas/report/12.0/" useStyleVersion="10" expressionLocale="en-us">
+				<modelPath>/content/package[@name='For_Dashboard']/model[@name='model']</modelPath>
+				<drillBehavior modelBasedDrillThru="true"/>
+				<layouts>
+					<layout>
+						<reportPages>
+							<page name="Page1">
+								<style>
+									<defaultStyles>
+										<defaultStyle refStyle="pg"/>
+									</defaultStyles>
+								</style>
+								<pageBody>
+									<style>
+										<defaultStyles>
+											<defaultStyle refStyle="pb"/>
+										</defaultStyles>
+									<CSS value="text-align:center"/></style>
+									<contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse;width:80%"/></style><tableRows><tableRow><tableCells><tableCell><contents><block>
+			<contents><list horizontalPagination="true" name="List1" refQuery="title">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse;font-family:Tahoma;font-size:12pt;color:white;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_name"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="font-family:Tahoma;font-size:11pt"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_structure_name"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="font-family:Tahoma;font-size:11pt"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_structure_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns><listColumnBodyStyle><style><CSS value="font-family:Tahoma;font-size:12pt;color:white;border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none"/></style></listColumnBodyStyle><listColumnTitleStyle><style><CSS value="display:none"/></style></listColumnTitleStyle></list><list horizontalPagination="true" name="List3" refQuery="titleYearMonth">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="kpi_level_name"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none;font-family:Tahoma;font-size:11pt"/></style><contents><textItem><dataSource><dataItemValue refDataItem="kpi_level_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="academic_year"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lm"/></defaultStyles><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none;font-family:Tahoma;font-size:11pt"/><dataFormat><numberFormat useGrouping="false"/></dataFormat></style><contents><textItem><dataSource><dataItemValue refDataItem="academic_year"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles></style><contents><textItem><dataSource><dataItemLabel refDataItem="th_month_name"/></dataSource></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="border-top-style:none;border-right-style:none;border-bottom-style:none;border-left-style:none;font-family:Tahoma;font-size:11pt"/></style><contents><textItem><dataSource><dataItemValue refDataItem="th_month_name"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns><listColumnBodyStyle><style><CSS value="font-family:Tahoma;font-size:12pt;color:white"/></style></listColumnBodyStyle><listColumnTitleStyle><style><CSS value="display:none"/></style></listColumnTitleStyle></list></contents>
+		<style><CSS value="padding-top:20px;padding-bottom:20px;color:white;text-align:center"/></style></block></contents><style><CSS value="text-align:center;background-color:navy;border:2.25pt solid navy"/></style></tableCell></tableCells></tableRow><tableRow><tableCells><tableCell><contents><table><style><defaultStyles><defaultStyle refStyle="tb"/></defaultStyles><CSS value="border-collapse:collapse"/></style><tableRows><tableRow><tableCells><tableCell><contents><v2_combinationChart maxHotspots="10000" orientation="horizontal" name="Combination Chart1" refQuery="Chart">
+																				<v2_combinationTypeTooltips/>
+																				<v2_commonAxis>
+																					<v2_ordinalAxis labelDisplayType="concat">
+																						<v2_axisTitle refQuery="Chart">
+																							<v2_chartTextContents>
+																								<v2_chartTextItems><v2_chartTextItem><dataSource><staticValue/></dataSource></v2_chartTextItem></v2_chartTextItems></v2_chartTextContents>
+																							<style>
+																								<defaultStyles>
+																									<defaultStyle refStyle="at"/>
+																								</defaultStyles>
+																							</style>
+																						</v2_axisTitle>
+																						<v2_axisLine lineWeight="0"/>
+																						<v2_axisLabels>
+																							<style>
+																								<defaultStyles>
+																									<defaultStyle refStyle="al"/>
+																								</defaultStyles>
+																							<CSS value="font-family:Tahoma;font-size:11pt"/></style>
+																						</v2_axisLabels>
+																					</v2_ordinalAxis>
+																					<chartNodes><chartNode><chartNodeMembers><chartNodeMember refDataItem="org_name"><chartContents><chartTextItem><dataSource><memberCaption/></dataSource></chartTextItem></chartContents></chartNodeMember></chartNodeMembers></chartNode></chartNodes></v2_commonAxis>
+																				<v2_topLeftAxis>
+																					<v2_combinationChartTypes>
+																						<v2_bar borders="show" setOrdinalWidthScale="50">
+																							<v2_solidPalette>
+																								<v2_solidPaletteEntries>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#8599D3">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#8599D3"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#5876AE"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#E3AE6C">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#E3AE6C"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#CD854E"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#839862">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#839862"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#6C7F56"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#B7C873">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#B7C873"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#AFB885"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#8484A8">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#8484A8"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#525E7E"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#C0CCED">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#C0CCED"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#B0C2E5"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#8C5580">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#8C5580"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#794067"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#C789BC">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#C789BC"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#BB72BC"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#D5BAEF">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#D5BAEF"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#C29FD1"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#83683F">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#83683F"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#604926"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#DCB05A">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#DCB05A"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#C09C52"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#F4DF9E">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#F4DF9E"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#E4CF87"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#5F8A8C">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#5F8A8C"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#537579"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#96C4B2">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#96C4B2"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#89B0A0"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#CBE8E7">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#CBE8E7"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#BDD6D5"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#AE6564">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#AE6564"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#875352"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#D88C6F">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#D88C6F"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#C47D61"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#E3C9B0">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#E3C9B0"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#D2B2A5"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#848484">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#848484"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#555555"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#a4a4a4">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#a4a4a4"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#909090"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																									<v2_solidPaletteEntry>
+																										<v2_fillEffect defaultColor="#C7C7C7">
+																											<v2_linearGradient gradientAngle="0">
+																												<v2_gradientColor colorPosition="0" gradientColor="#C7C7C7"/>
+																												<v2_gradientColor colorPosition="100" gradientColor="#c1c1c1"/>
+																											</v2_linearGradient>
+																										</v2_fillEffect>
+																									</v2_solidPaletteEntry>
+																								</v2_solidPaletteEntries>
+																							</v2_solidPalette>
+																							<chartNodes><chartNode><chartNodeMembers><chartNodeMember refDataItem="kpi_score"><chartContents><chartTextItem><dataSource><memberCaption/></dataSource></chartTextItem></chartContents><style><dataFormat><numberFormat decimalSize="2"/></dataFormat></style></chartNodeMember></chartNodeMembers></chartNode></chartNodes><v2_chartDataLabels displayDataLocation="centered" labelCollisionMode="fine_stagger" leaderLines="hide" labelValueType="absolute"/></v2_bar>
+																					</v2_combinationChartTypes>
+																					<v2_axis>
+																						<v2_axisTitle refQuery="Chart">
+																							<v2_chartTextContents>
+																								<v2_chartTextItems><v2_chartTextItem><dataSource><staticValue/></dataSource></v2_chartTextItem></v2_chartTextItems></v2_chartTextContents>
+																							<style>
+																								<defaultStyles>
+																									<defaultStyle refStyle="at"/>
+																								</defaultStyles>
+																							</style>
+																						</v2_axisTitle>
+																						<v2_axisLine lineWeight="0"/>
+																						<v2_axisRange scale="linear">
+																							
+																						<v2_specifiedRange includeZeroForAutoScale="true" min="0" max="5" scaleInterval="1"/></v2_axisRange>
+																						<v2_axisLabels>
+																							<style>
+																								<defaultStyles>
+																									<defaultStyle refStyle="al"/>
+																								</defaultStyles>
+																							<CSS value="font-family:Tahoma;font-size:11pt"/></style>
+																						</v2_axisLabels>
+																						
+																						
+																					<v2_majorGridlines lineColor="#CCCCCC" lineWeight="0"/></v2_axis>
+																				</v2_topLeftAxis>
+																				<style>
+																					<defaultStyles>
+																						<defaultStyle refStyle="ch"/>
+																					</defaultStyles>
+																				<CSS value="padding-top:20px;padding-bottom:20px;padding-left:20px;font-family:Tahoma;font-size:12pt;width:800px"/></style>
+																				<noDataHandler>
+																					<contents>
+																						<block>
+																							<contents>
+																								<textItem>
+																									<dataSource>
+																										<staticValue>No Data Available</staticValue>
+																									</dataSource>
+																									<style>
+																										<CSS value="padding:10px 18px;"/>
+																									</style>
+																								</textItem>
+																							</contents>
+																						</block>
+																					</contents>
+																				</noDataHandler>
+																				<v2_chartBody><style><CSS value="color:white;font-family:Tahoma;font-size:11pt"/></style></v2_chartBody><v2_defaultChartMeasure refDataItem="academic_month_no"/></v2_combinationChart>
+																		</contents></tableCell><tableCell><contents><list horizontalPagination="true" name="List2" refQuery="threshold">
+			
+			
+			
+			<noDataHandler>
+				<contents>
+					<block>
+						<contents>
+							<textItem>
+								<dataSource>
+									<staticValue>No Data Available</staticValue>
+								</dataSource>
+								<style>
+									<CSS value="padding:10px 18px;"/>
+								</style>
+							</textItem>
+						</contents>
+					</block>
+				</contents>
+			</noDataHandler>
+			<style>
+				<CSS value="border-collapse:collapse"/>
+				<defaultStyles>
+					<defaultStyle refStyle="ls"/>
+				</defaultStyles>
+			</style>
+		<listColumns><listColumn><listColumnTitle><style><defaultStyles><defaultStyle refStyle="lt"/></defaultStyles><CSS value="text-align:center;font-family:Tahoma;font-size:12pt"/></style><contents><textItem><dataSource><dataItemLabel refDataItem="threshold"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnTitle><listColumnBody><style><defaultStyles><defaultStyle refStyle="lc"/></defaultStyles><CSS value="font-family:Tahoma;font-size:12pt"/></style><contents><textItem><dataSource><dataItemValue refDataItem="threshold"/></dataSource><style><CSS value="font-family:Tahoma;font-size:11pt"/></style></textItem></contents></listColumnBody></listColumn></listColumns></list></contents><style><CSS value="vertical-align:top;padding-top:20px;padding-right:20px;text-align:center"/></style></tableCell></tableCells></tableRow></tableRows></table></contents><style><CSS value="text-align:center;border:1pt solid navy"/></style></tableCell></tableCells></tableRow></tableRows></table></contents>
+								</pageBody>
+							</page>
+						</reportPages>
+					</layout>
+				</layouts>
+			<XMLAttributes><XMLAttribute name="RS_CreateExtendedDataItems" value="true" output="no"/><XMLAttribute name="listSeparator" value="," output="no"/><XMLAttribute name="RS_modelModificationTime" value="2016-01-12T04:26:46.883Z" output="no"/></XMLAttributes><reportName>Dashboard_Report</reportName><queries><query name="threshold"><source><model/></source><selection><dataItem name="academic_year" aggregate="none"><expression>[Model].[Threshold_1].[academic_year]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Threshold_1].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="threshold" aggregate="none" rollupAggregate="none" label="ผลการประเมิน"><expression>[Model].[Threshold_1].[threshold]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter><filterExpression>[academic_year]=?paramYear?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_level_id]=?paramLv?</filterExpression></detailFilter></detailFilters></query><query name="Chart"><source><model/></source><selection><dataItem name="org_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Dashboard_2].[org_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_score" aggregate="average"><expression>[Model].[Dashboard_2].[kpi_score]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="2" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="academic_year" aggregate="none"><expression>[Model].[Dashboard_2].[academic_year]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="academic_month_no" aggregate="none"><expression>[Model].[Dashboard_2].[academic_month_no]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter><filterExpression>[academic_year]=?paramYear?</filterExpression></detailFilter><detailFilter><filterExpression>[Model].[Dashboard_2].[academic_month_no]=?paramMonth?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_level_id]=?paramLv?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_id]=?paramKpi?</filterExpression></detailFilter></detailFilters></query><query name="title"><source><model/></source><selection><dataItem name="kpi_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Dashboard_2].[kpi_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_structure_name" aggregate="none" rollupAggregate="none"><expression>[Model].[Dashboard_2].[kpi_structure_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="academic_year" aggregate="none"><expression>[Model].[Dashboard_2].[academic_year]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="academic_month_no" aggregate="none"><expression>[Model].[Dashboard_2].[academic_month_no]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter><filterExpression>[academic_year]=?paramYear?</filterExpression></detailFilter><detailFilter><filterExpression>[Model].[Dashboard_2].[academic_month_no]=?paramMonth?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_level_id]=?paramLv?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_id]=?paramKpi?</filterExpression></detailFilter></detailFilters></query><query name="titleYearMonth"><source><model/></source><selection><dataItem name="academic_year" aggregate="none"><expression>[Model].[Dashboard_2].[academic_year]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="th_month_name" aggregate="none" rollupAggregate="none"><expression>'เดือน '+[Model].[Dashboard_2].[th_month_name]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem><dataItem name="academic_month_no" aggregate="none"><expression>[Model].[Dashboard_2].[academic_month_no]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_level_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_id" aggregate="none"><expression>[Model].[Dashboard_2].[kpi_id]</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="1" output="no"/><XMLAttribute name="RS_dataUsage" value="fact" output="no"/></XMLAttributes></dataItem><dataItem name="kpi_level_name" aggregate="none" rollupAggregate="none"><expression>'ระดับตัวบ่งชี้ '+[Model].[Dashboard_2].[kpi_level_name]
++ ' ปีการศึกษา'</expression><XMLAttributes><XMLAttribute name="RS_dataType" value="3" output="no"/><XMLAttribute name="RS_dataUsage" value="attribute" output="no"/></XMLAttributes></dataItem></selection><detailFilters><detailFilter><filterExpression>[academic_year]=?paramYear?</filterExpression></detailFilter><detailFilter><filterExpression>[Model].[Dashboard_2].[academic_month_no]=?paramMonth?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_level_id]=?paramLv?</filterExpression></detailFilter><detailFilter><filterExpression>[kpi_id]=?paramKpi?</filterExpression></detailFilter></detailFilters></query></queries></report>
